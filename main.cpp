@@ -6,24 +6,24 @@
 //класс двигателя
 class Motor {
 public:
-    void moveForward(int duration) {
-        std::cout << "Move forward " << duration << " seconds" << std::endl;
-        std::this_thread::sleep_for(std::chrono::seconds(duration));
+    void moveForward(int sec) {
+        std::cout << "Move forward " << sec << " seconds" << std::endl;
+        std::this_thread::sleep_for(std::chrono::seconds(sec));
     }
 
-    void moveBackward(int duration) {
-        std::cout << "Move backward " << duration << " seconds" << std::endl;
-        std::this_thread::sleep_for(std::chrono::seconds(duration));
+    void moveBackward(int sec) {
+        std::cout << "Move backward " << sec << " seconds" << std::endl;
+        std::this_thread::sleep_for(std::chrono::seconds(sec));
     }
 
-    void turnRight(int duration) {
-        std::cout << "Turn to right " << duration << " seconds" << std::endl;
-        std::this_thread::sleep_for(std::chrono::seconds(duration));
+    void turnRight(int sec) {
+        std::cout << "Turn to left " << sec << " seconds" << std::endl;
+        std::this_thread::sleep_for(std::chrono::seconds(sec));
     }
 
-    void turnLeft(int duration) {
-        std::cout << "Turn to left " << duration << " seconds" << std::endl;
-        std::this_thread::sleep_for(std::chrono::seconds(duration));
+    void turnLeft(int sec) {
+        std::cout << "Turn to right " << sec << " seconds" << std::endl;
+        std::this_thread::sleep_for(std::chrono::seconds(sec));
     }
 
     void stop() {
@@ -39,28 +39,27 @@ public:
 
         Motor motor1;
 
-        if (message == "move_forward") {
+        if (message == "move forward") {
             motor1.moveForward(2);
-        } else if (message == "move_backward") {
+        } else if (message == "move backward") {
             motor1.moveBackward(1);
-        } else if (message == "turn_right") {
+        } else if (message == "turn left") {
             motor1.turnRight(3);
-        } else if (message == "turn_left") {
+        } else if (message == "turn right") {
             motor1.turnLeft(4);
         } else if (message == "stop") {
             motor1.stop();
         } else {
-            std::cout << "Ошибка" << std::endl;
+            std::cout << "error" << std::endl;
         }
     }
 };
 
 int main() {
     ServerCommunicator server;
-
-    // Пример получения сообщений с сервера
-    server.receiveMessage("move_forward");
-    server.receiveMessage("turn_left");
+    
+    server.receiveMessage("move forward");
+    server.receiveMessage("turn left");
     server.receiveMessage("stop");
 
     return 0;
